@@ -86,6 +86,16 @@ var range = function(x, y) {
 // exponent(4,3); // 64
 // https://www.khanacademy.org/computing/computer-science/algorithms/recursive-algorithms/a/computing-powers-of-a-number
 var exponent = function(base, exp) {
+  if (exp === 0){
+    return 1;
+  }
+  if (exp > 0){
+    return base * exponent(base, exp-1);
+  }
+  else if (exp < 0){
+    return (1/base) * (exponent(base, exp+1)).toFixed(5);
+  }
+
 };
 
 // 8. Determine if a number is a power of two.
@@ -93,10 +103,18 @@ var exponent = function(base, exp) {
 // powerOfTwo(16); // true
 // powerOfTwo(10); // false
 var powerOfTwo = function(n) {
+  if (n === 2 || n === 1){
+    return true;
+  }
+  if (n < 2){
+    return false;
+  }
+  return powerOfTwo(n/2);
 };
 
 // 9. Write a function that reverses a string.
 var reverse = function(string) {
+
 };
 
 // 10. Write a function that determines if a string is a palindrome.
@@ -114,8 +132,22 @@ var modulo = function(x, y) {
 // 12. Write a function that multiplies two numbers without using the * operator or
 // Math methods.
 var multiply = function(x, y) {
-};
+  if (x === 0 || y === 0){
+    return 0;
+  }
+  if (y === 0){
+    return 0;
+  }
+  if (y < 0){
+    return x < 0 ? ((-x) + multiply((-x), (-y - 1))) : (
+      -x + multiply(-x, (-y - 1))
+    )
+  }
+  else {
+    return  (x + multiply(x, y - 1))
+  }
 
+};
 // 13. Write a function that divides two numbers without using the / operator or
 // Math methods to arrive at an approximate quotient (ignore decimal endings).
 var divide = function(x, y) {
